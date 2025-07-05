@@ -2,28 +2,60 @@ package main
 
 import "fmt"
 
+type Product struct {
+	name string
+	price int
+	ratings float32
+}
+
 // func main() {
 // 	fmt.Println("Hello world");
 // }
 
-func fun(){
-	fmt.Println("Hello world");
+// func fun(){
+// 	fmt.Println("Hello world");
+// }
+
+ 
+func newProduct(name string , price int , ratings float32) Product {
+	p := Product{
+		name:    name,
+		price:   price,
+		ratings: ratings,
+	}
+	return p // unlike other lang this will return a copy of the product
 }
 
+func fun(p Product){
+	// this p is a copy of the product passed to this function
+	p.price = 56000
+}
 func main(){
-	fun();
-	var productName string = "iphone";
-	fmt.Println("product name is :", productName);
-	loop_demo();
 
-	array_demo();
+	p := Product{
+		name : "iphone 15 pro",
+		price : 12500,
+		ratings: 4.6,
+	}
 
-	maps_demo();
+	 fmt.Println("product price is: ", p.price)
 
-	p,q:= check_even_odd(10);
-	fmt.Println(p , q)
+	 fun(p)
 
-	pointer_demo()
+	 fmt.Println("product price after function call: ", p.price) // the price will not change even after function call becoz go will pass copy of product
+	// fun();
+	// var productName string = "iphone";
+	// fmt.Println("product name is :", productName);
+	// loop_demo();
+
+	// array_demo();
+
+	// maps_demo();
+
+	// p,q := check_even_odd(10);
+	// fmt.Println(p,q)
+
+	// pointer_demo()
 }
 
 func loop_demo() {
@@ -81,13 +113,15 @@ func maps_demo() {
 	fmt.Println("populated emptyMap : " , emptyMap)
 }
 
-func check_even_odd(x int) (string , int){
-	if(x%2>0) {
-		return "odd" ,x
+func check_even_odd(x int) (string, int) {
+	if x%2 > 0 {
+		return "odd", x
 	} else {
-		return "even" ,x
+		return "even", x
 	}
 }
+
+
 
 func pointer_demo(){
 	i := 10
