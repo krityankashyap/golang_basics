@@ -96,4 +96,5 @@ func pointer_demo(){
 	ptr1 := &i // short hand
 
 	fmt.Println("value of i: ",i , "pointer of i :" , ptr , "pointer1 of i :" ,ptr1)
+	fmt.Println("value present at pointer ", *ptr) // access the value present in the memory address of the pointer
 }
