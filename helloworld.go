@@ -22,6 +22,8 @@ func main(){
 
 	p,q:= check_even_odd(10);
 	fmt.Println(p , q)
+
+	pointer_demo()
 }
 
 func loop_demo() {
@@ -85,4 +87,13 @@ func check_even_odd(x int) (string , int){
 	} else {
 		return "even" ,x
 	}
+}
+
+func pointer_demo(){
+	i := 10
+	var ptr *int = &i // *int-> it shows the datatype of pointer that can store the address of int type , &-> used to fetch the address of i
+
+	ptr1 := &i // short hand
+
+	fmt.Println("value of i: ",i , "pointer of i :" , ptr , "pointer1 of i :" ,ptr1)
 }
