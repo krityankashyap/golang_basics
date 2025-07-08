@@ -47,16 +47,25 @@ func fun(p *Product){
 	p.price = 56000
 	}
 
+	// define a member function of struct
+	func (p *Product) display() {
+		fmt.Println(p.name)
+		fmt.Println(p.price)
+		fmt.Println(p.ratings)
+	}
+
 
 func main(){
 
 	new_product_pointer := newProduct("iphone 15 pro" , 125000 , 4.6)
 
 	 fmt.Println("product price is: ", new_product_pointer.price)
+	 new_product_pointer.display()
 
 	 fun(new_product_pointer)
 
 	 fmt.Println("product price after function call is :" , new_product_pointer.price)
+	 new_product_pointer.display()
 
 //	 fun(p)
 
