@@ -2,6 +2,10 @@ package main
 
 import "fmt"
 
+type sellableProduct interface {
+	buy() 
+	getDiscount() int
+}
 type Product struct {
 	name string
 	price int
@@ -16,7 +20,28 @@ type Product struct {
 // 	fmt.Println("Hello world");
 // }
 
- 
+ func check_discount_and_buy(p sellableProduct){
+	discount := p.getDiscount()
+
+	if discount>30 {
+		fmt.Println("We will buy this prod")
+		p.buy()
+		return
+	} else {
+		fmt.Println("We won't buy this prod")
+		return
+	}
+ }
+
+ func (p *Product) buy(){
+	fmt.Println("Buying product: ", p.name , "for price: ", p.price)
+ }
+
+ func (p *Product) getDiscount() int {
+	discount := p.price * 20/100
+  fmt.Println("Discount for product: ", p.name , "for price:" , p.price)
+	return discount
+ }
 // func newProduct(name string , price int , ratings float32) Product {
 // 	p := Product{
 // 		name:    name,
@@ -59,13 +84,14 @@ func main(){
 
 	new_product_pointer := newProduct("iphone 15 pro" , 125000 , 4.6)
 
-	 fmt.Println("product price is: ", new_product_pointer.price)
-	 new_product_pointer.display()
+	//  fmt.Println("product price is: ", new_product_pointer.price)
+	//  new_product_pointer.display()
 
-	 fun(new_product_pointer)
+	//  fun(new_product_pointer)
 
-	 fmt.Println("product price after function call is :" , new_product_pointer.price)
-	 new_product_pointer.display()
+	//  fmt.Println("product price after function call is :" , new_product_pointer.price)
+	//  new_product_pointer.display()
+	check_discount_and_buy(new_product_pointer)
 
 //	 fun(p)
 
