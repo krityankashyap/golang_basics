@@ -17,32 +17,50 @@ type Product struct {
 // }
 
  
-func newProduct(name string , price int , ratings float32) Product {
+// func newProduct(name string , price int , ratings float32) Product {
+// 	p := Product{
+// 		name:    name,
+// 		price:   price,
+// 		ratings: ratings,
+// 	}
+// 	return p // unlike other lang this will return a copy of the product
+// }
+
+// func fun(p Product){
+// 	// this p is a copy of the product passed to this function
+// 	p.price = 56000
+// }
+
+// Now instead of passing copy we can use pointers and address to avoid 
+
+func newProduct(name string , price int , ratings float32) *Product {
 	p := Product{
 		name:    name,
 		price:   price,
 		ratings: ratings,
 	}
-	return p // unlike other lang this will return a copy of the product
+	return &p // unlike other lang this will return a copy of the product
 }
 
-func fun(p Product){
-	// this p is a copy of the product passed to this function
+
+func fun(p *Product){
 	p.price = 56000
-}
-func main(){
-
-	p := Product{
-		name : "iphone 15 pro",
-		price : 12500,
-		ratings: 4.6,
 	}
 
-	 fmt.Println("product price is: ", p.price)
 
-	 fun(p)
+func main(){
 
-	 fmt.Println("product price after function call: ", p.price) // the price will not change even after function call becoz go will pass copy of product
+	new_product_pointer := newProduct("iphone 15 pro" , 125000 , 4.6)
+
+	 fmt.Println("product price is: ", new_product_pointer.price)
+
+	 fun(new_product_pointer)
+
+	 fmt.Println("product price after function call is :" , new_product_pointer.price)
+
+//	 fun(p)
+
+	 // fmt.Println("product price after function call: ", p.price) // the price will not change even after function call becoz go will pass copy of product
 	// fun();
 	// var productName string = "iphone";
 	// fmt.Println("product name is :", productName);
